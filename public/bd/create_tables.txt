@@ -1,0 +1,29 @@
+CREATE TABLE tbdispositivos (
+    id_dispositivo SERIAL PRIMARY KEY,
+	id_setor INT,
+    nome_dispositivo VARCHAR(255) NOT NULL,
+    status smallint CHECK(status in (0,1)) DEFAULT 1 
+);
+
+
+CREATE TABLE tbperguntas (
+    id_pergunta SERIAL PRIMARY KEY,
+    texto_pergunta TEXT NOT NULL,
+    status smallint CHECK(status in (0,1)) DEFAULT 1 
+);
+
+CREATE TABLE tbavaliacao (
+    id_avaliacao SERIAL PRIMARY KEY,
+    id_setor INT, 
+    id_pergunta INT,
+    id_dispositivo INT,	
+    resposta smallint NOT NULL CHECK (resposta BETWEEN 0 AND 10),
+    feedback_textual TEXT,
+    data_hora_avaliacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    --CONSTRAINT fk_setor FOREIGN KEY (id_setor) REFERENCES tbdispositivos(id_setor),
+    CONSTRAINT fk_pergunta FOREIGN KEY (id_pergunta) REFERENCES tbperguntas(id_pergunta),
+    CONSTRAINT fk_dispositivo FOREIGN KEY (id_dispositivo) REFERENCES tbdispositivos(id_dispositivo)
+);
+
+insert into tbperguntas values (1,'Como você avalia nosso atendimento?',1);
+insert into tbperguntas values (2,'Você foi bem recebido?',1);

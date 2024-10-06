@@ -1,0 +1,89 @@
+/* Reset básico para remover margens e paddings padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Estilos da barra de navegação */
+.navbar {
+    background-color: #343a40;
+    padding: 10px 20px;
+}
+
+.navbar-nav {
+    list-style-type: none;
+    display: flex; /* Alinha os itens horizontalmente */
+}
+
+.nav-item {
+    position: relative; /* Necessário para posicionamento absoluto do submenu */
+    margin-right: 20px; /* Espaçamento entre os itens de navegação */
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover, .nav-item.active > .nav-link {
+    background-color: #495057;
+    border-radius: 4px;
+}
+
+/* Estilos do submenu */
+.submenu {
+    display: none; /* Esconde o submenu por padrão */
+    position: absolute;
+    top: 100%; /* Posiciona o submenu diretamente abaixo do item de navegação */
+    left: 0;
+    background-color: #495057;
+    list-style-type: none;
+    min-width: 180px; /* Largura mínima do submenu */
+    border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000; /* Garante que o submenu fique acima de outros elementos */
+}
+
+.submenu li a {
+    color: #ffffff;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.submenu li a:hover {
+    background-color: #6c757d;
+    border-radius: 4px;
+}
+
+/* Exibir submenu quando o item de navegação está ativo */
+.nav-item.active .submenu {
+    display: block;
+}
+
+/* Estilos do conteúdo principal */
+.main-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.main-content h1 {
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+.main-content p {
+    color: #6c757d;
+}
