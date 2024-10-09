@@ -1,7 +1,8 @@
 <?php
     require_once '../Controller/ClassControllerAvaliacao.php';
     $controller = new ClassControllerAvaliacao();   
-    $texto = $controller -> getTextoPergunta(); 
+    $aTexto = $controller -> getTextoPergunta(); 
+    echo "<div id='data' data-array='". json_encode($aTexto) ."'></div>";
     //notação: fazer com que ao enviar o formulário, abra na mesma página com a próxima pergunta.
 ?>
 
@@ -12,11 +13,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliação Hospital Regional</title>
     <link rel="stylesheet" href="../public/styles/styleClassViewManutencaoAvaliacao.css">
+    <script src="../View/ClassViewComportamentoAvaliacao.js" defer></script>
 </head>
 <body>
     <form method="post" action="../Controller/ClassControllerAvaliacao.php">
         <div class="pergunta">
-            <p><?php echo $texto?></p>
+            <p id="textoPergunta"></p>
         </div>
         <div class="container">
             <div class="label">Improvável</div>
@@ -79,7 +81,7 @@
             <div class="label">Muito Provável</div>
         </div>
 
-        <a href="ClassViewManutencaoAvaliacaoDescritiva.html"> <button type="submit">Enviar</button> </a> 
+        <button type="submit">Enviar</button> 
 
     </form>
 

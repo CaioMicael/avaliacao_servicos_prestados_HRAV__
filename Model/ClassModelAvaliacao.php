@@ -31,7 +31,7 @@ class ClassModelAvaliacao {
     public function getTextoPerguntaModel() {
         $conexao = pg_connect($this -> info_con);
         $result = pg_query($conexao, "SELECT texto_pergunta FROM tbperguntas WHERE status = 1");
-        return pg_fetch_all($result);
+        return pg_fetch_all($result);   
     }
 
     public function getDataAvaliacao() {

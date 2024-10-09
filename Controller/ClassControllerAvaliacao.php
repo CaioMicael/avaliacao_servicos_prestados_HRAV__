@@ -25,8 +25,7 @@ class ClassControllerAvaliacao {
     }
 
     public function getTextoPergunta() {
-        $aDados = $this -> model -> getTextoPerguntaModel();
-        
+        return $aDados = $this -> model -> getTextoPerguntaModel();
     }
 
     public function getAvaliacao() {
