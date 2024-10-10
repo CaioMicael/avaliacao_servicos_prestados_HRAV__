@@ -14,11 +14,12 @@
     <title>Avaliação Hospital Regional</title>
     <link rel="stylesheet" href="../public/styles/styleClassViewManutencaoAvaliacao.css">
     <script src="../View/ClassViewComportamentoAvaliacao.js" defer></script>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 </head>
 <body>
-    <form method="post" action="../Controller/ClassControllerAvaliacao.php">
+    <form method="post" action="../Controller/ClassControllerAvaliacao.php" id="myform">
         <div class="pergunta">
-            <p id="textoPergunta"></p>
+            <p name="textoPergunta" id="textoPergunta"></p>
         </div>
         <div class="container">
             <div class="label">Improvável</div>
@@ -81,7 +82,7 @@
             <div class="label">Muito Provável</div>
         </div>
 
-        <button type="submit">Enviar</button> 
+        <button type="submit" id="botaoSubmit">Enviar</button> 
 
     </form>
 

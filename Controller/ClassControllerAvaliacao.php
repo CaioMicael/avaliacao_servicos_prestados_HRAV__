@@ -21,7 +21,15 @@ class ClassControllerAvaliacao {
             if (isset($_POST['avaliacao'])) {
                 $this -> setAvaliacao($_POST['avaliacao']);
             }
+            if (isset($_POST['id_pergunta'])) {
+                $this -> setPergunta($_POST['id_pergunta']);
+            }
+            $this -> enviaResultadoAvaliacao();
         }
+    }
+
+    public function enviaResultadoAvaliacao() {
+        $this -> model -> insereAvaliacao($this -> getPergunta() , $this -> getAvaliacao());
     }
 
     public function getTextoPergunta() {
@@ -61,8 +69,8 @@ class ClassControllerAvaliacao {
     }
 }
 
-
-#$avaliacaoForm -> processaAvaliacao();
+$avaliacaoForm = new ClassControllerAvaliacao();   
+$avaliacaoForm -> processaAvaliacao();
 #$avaliacaoModel -> insereAvaliacao($avaliacaoForm -> getAvaliacao());
 
 
