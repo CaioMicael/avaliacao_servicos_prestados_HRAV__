@@ -26,9 +26,9 @@ function atualizaRadioSelecionado() {
 //document.getElementById("botaoSubmit").addEventListener("click", function() { ---> AVALIAR NECESSIDADE, a principio a forma de pegar as perguntas do model que está fazendo ele inserir antes de enviar o formulário
     $("#myform").submit(function(e) {
         var url = "../Controller/ClassControllerAvaliacao.php";
-        var id_pergunta = $(idTextoPergunta[indice]).val(); 
+        var id_pergunta = idTextoPergunta[indice-1]; 
         var avaliacao   = $("#myform").serialize();
-        var sdata = { avaliacao : avaliacao , id_pergunta : id_pergunta }
+        var sdata = avaliacao + "&id_pergunta=" + encodeURIComponent(id_pergunta);
         $.ajax({
                type: "POST",
                url: url,

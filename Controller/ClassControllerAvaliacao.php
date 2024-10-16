@@ -23,6 +23,8 @@ class ClassControllerAvaliacao {
             }
             if (isset($_POST['id_pergunta'])) {
                 $this -> setPergunta($_POST['id_pergunta']);
+            } else {
+                echo "id_pergunta não carregado!";
             }
             $this -> enviaResultadoAvaliacao();
         }
