@@ -23,15 +23,16 @@ class ClassControllerAvaliacao {
             }
             if (isset($_POST['id_pergunta'])) {
                 $this -> setPergunta($_POST['id_pergunta']);
-            } else {
-                echo "id_pergunta não carregado!";
+            }
+            if (isset($_POST['texto'])) {
+                $this -> setFeedback($_POST['texto']);
             }
             $this -> enviaResultadoAvaliacao();
         }
     }
 
     public function enviaResultadoAvaliacao() {
-        $this -> model -> insereAvaliacao($this -> getPergunta() , $this -> getAvaliacao());
+        $this -> model -> insereAvaliacao($this -> getPergunta() , $this -> getAvaliacao() , $this -> getFeedback());
     }
 
     public function getTextoPergunta() {
@@ -71,10 +72,8 @@ class ClassControllerAvaliacao {
     }
 }
 
-$avaliacaoForm = new ClassControllerAvaliacao();   
-$avaliacaoForm -> processaAvaliacao();
-#$avaliacaoModel -> insereAvaliacao($avaliacaoForm -> getAvaliacao());
-
-
-
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $avaliacaoForm = new ClassControllerAvaliacao();   
+    $avaliacaoForm -> processaAvaliacao();
+}
 ?>

@@ -7,10 +7,10 @@ class ClassModelAvaliacao {
     public $statusPergunta;
     public $info_con = "host= localhost port = 5432 dbname= avaliacao user= postgres password= postgres";
 
-    public function insereAvaliacao($idPergunta , $valorAvaliacao) {
+    public function insereAvaliacao($idPergunta , $valorAvaliacao , $texto) {
         try {
             $conexao = pg_connect($this -> info_con);
-            $aDados  = array(1,$idPergunta,1,$valorAvaliacao,'teste');
+            $aDados  = array(1,$idPergunta,1,$valorAvaliacao,$texto);
             pg_query_params($conexao , "INSERT INTO tbavaliacao (id_setor , id_pergunta , id_dispositivo , resposta , feedback_textual) 
                                             VALUES ($1, $2, $3, $4, $5)",$aDados);
         } catch (Exception $e) {

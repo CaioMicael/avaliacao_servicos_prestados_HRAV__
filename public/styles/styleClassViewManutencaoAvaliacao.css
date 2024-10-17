@@ -82,8 +82,8 @@ p {
 }
 
 .box {
-    width: 75px;
-    height: 75px;
+    width: 90px;
+    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,7 +94,7 @@ p {
     margin-bottom: 50px;
     cursor: pointer;
     transition: transform 0.2s ease;
-    border-radius: 30px;
+    border-radius: 50%;
 }
 
 .box:hover {
