@@ -16,6 +16,7 @@
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 </head>
 <body>
+    <div class="main-container">
     <form id="myform">
         <div class="pergunta">
             <p name="textoPergunta" id="textoPergunta"></p>
@@ -61,12 +62,12 @@
         </div>
 
         <button type="submit" id="botaoSubmit">Enviar</button> 
-
+    </div>
     </form>
-
-    <div class="footer">
-        <img src="../public/imgs/pngAtencaoSimbolo.png" alt="Atenção" id="img_footer" >
-        <footer>Sua avaliação espontânea é anônima, nenhuma informação pessoal é solicitada ou armazenada.</footer>
+        <div class="footer">
+            <img src="../public/imgs/pngAtencaoSimbolo.png" alt="Atenção" id="img_footer" >
+            <footer>Sua avaliação espontânea é anônima, nenhuma informação pessoal é solicitada ou armazenada.</footer>
+        </div>
     </div>
 
 </body>
