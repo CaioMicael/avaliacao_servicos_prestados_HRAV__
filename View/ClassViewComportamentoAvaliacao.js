@@ -2,9 +2,9 @@ var indice = 0;
 var jsTextoPergunta = JSON.parse(document.getElementById('data').getAttribute('data-array'));
 var aTextoPergunta  = Object.values(jsTextoPergunta).map(item => item.texto_pergunta);
 var idTextoPergunta = Object.values(jsTextoPergunta).map(item => item.id_pergunta);
-const divAndamentoPerguntas = document.createElement("div");
+var divAndamentoPergunta = document.createElement("div");
 const totalPerguntas = Object.keys(jsTextoPergunta).length;
-const divAndamentoPerguntasID = document.getElementById("andamentoPerguntas");
+divAndamentoPergunta.id = "divAndamentoPergunta";
 
 setTimeout(atualizaPerguntaForm(),0);
 
@@ -16,9 +16,22 @@ function atualizaPerguntaForm() {
         document.getElementById("textoPergunta").innerHTML = aTextoPergunta[indice];
         indice += 1;
     }
-    var contentAndamentoPerguntas = document.createTextNode("Pergunta "+indice+"/"+totalPerguntas);
-    divAndamentoPerguntas.appendChild(contentAndamentoPerguntas);
-    document.body.insertBefore(divAndamentoPerguntas,divAndamentoPerguntasID);
+
+    atualizaAndamentoPergunta();
+}
+
+function atualizaAndamentoPergunta() {
+    var contentAndamentoPergunta = "Pergunta "+indice+"/"+totalPerguntas;
+    if (document.getElementById("divAndamentoPergunta") == null) {
+        divAndamentoPerguntas.appendChild(createNodeAndamentoPergunta);
+        document.body.insertBefore(divAndamentoPerguntas,divAndamentoPerguntasID);
+    }
+    else {
+        var nodeAndamentoPergunta = document.getElementById("andamentoPerguntas");
+        nodeAndamentoPergunta.parentNode.removeChild(nodeAndamentoPergunta);
+        divAndamentoPerguntas.appendChild(createNodeAndamentoPergunta);
+        document.body.insertBefore(divAndamentoPerguntas,divAndamentoPerguntasID);  
+    }
 }
 
 function atualizaRadioSelecionado() {
