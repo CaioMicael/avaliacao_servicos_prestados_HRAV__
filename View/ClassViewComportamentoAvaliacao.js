@@ -1,12 +1,27 @@
-var indice = 0;
-var jsTextoPergunta = JSON.parse(document.getElementById('data').getAttribute('data-array'));
-var aTextoPergunta  = Object.values(jsTextoPergunta).map(item => item.texto_pergunta);
-var idTextoPergunta = Object.values(jsTextoPergunta).map(item => item.id_pergunta);
-var divAndamentoPergunta = document.createElement("div");
-const totalPerguntas = Object.keys(jsTextoPergunta).length;
-divAndamentoPergunta.id = "divAndamentoPergunta";
+var indice                  = 0;
+var jsTextoPergunta         = JSON.parse(document.getElementById('data').getAttribute('data-array'));
+var aTextoPergunta          = Object.values(jsTextoPergunta).map(item => item.texto_pergunta);
+var idTextoPergunta         = Object.values(jsTextoPergunta).map(item => item.id_pergunta);
+var divAndamentoPergunta    = document.createElement("div");
+var BarraProgressoContainer = document.createElement("div");
+var divBarraProgresso       = document.createElement("div");
+var divContainerForm        = document.getElementById("main-container");
 
-setTimeout(atualizaPerguntaForm(),0);
+const totalPerguntas     = Object.keys(jsTextoPergunta).length;
+
+//Adicionando IDs as divs criadas pelo JS
+divAndamentoPergunta.id    = "divAndamentoPergunta";
+BarraProgressoContainer.id = "barraProgressoContainer";
+divBarraProgresso.id       = "divBarraProgresso";
+
+setTimeout(atualizaComponentesTela(),0);
+
+function atualizaComponentesTela() {
+    atualizaPerguntaForm();
+    atualizaCampoTextoDigitado();
+    geraBarraProgresso();
+    atualizaBarraProgresso(calculaProgresso());
+}
 
 function atualizaPerguntaForm() {
     if (aTextoPergunta[indice] == undefined) {
@@ -16,22 +31,34 @@ function atualizaPerguntaForm() {
         document.getElementById("textoPergunta").innerHTML = aTextoPergunta[indice];
         indice += 1;
     }
-
     atualizaAndamentoPergunta();
+    atualizaBarraProgresso(calculaProgresso());//?? por que se deixar esta função aqui dentro funciona? Por que não pode ficar no componentes tela?
 }
 
 function atualizaAndamentoPergunta() {
     var contentAndamentoPergunta = "Pergunta "+indice+"/"+totalPerguntas;
     if (document.getElementById("divAndamentoPergunta") == null) {
-        divAndamentoPerguntas.appendChild(createNodeAndamentoPergunta);
-        document.body.insertBefore(divAndamentoPerguntas,divAndamentoPerguntasID);
+        divAndamentoPergunta.innerHTML = contentAndamentoPergunta;
+        divContainerForm.appendChild(divAndamentoPergunta);
     }
     else {
-        var nodeAndamentoPergunta = document.getElementById("andamentoPerguntas");
-        nodeAndamentoPergunta.parentNode.removeChild(nodeAndamentoPergunta);
-        divAndamentoPerguntas.appendChild(createNodeAndamentoPergunta);
-        document.body.insertBefore(divAndamentoPerguntas,divAndamentoPerguntasID);  
+        divAndamentoPergunta.innerHTML = contentAndamentoPergunta;  
     }
+}
+
+function geraBarraProgresso() {
+    if (document.getElementById("divBarraProgresso") == null) {
+        divContainerForm.appendChild(BarraProgressoContainer);
+        BarraProgressoContainer.appendChild(divBarraProgresso);
+    }
+}
+
+function atualizaBarraProgresso(progresso) {
+        divBarraProgresso.style.width = progresso + '%';
+}
+
+function calculaProgresso() {
+    return (indice/totalPerguntas)*100;
 }
 
 function atualizaRadioSelecionado() {
@@ -40,6 +67,11 @@ function atualizaRadioSelecionado() {
     for (var i=0 ; i < botoesAvaliacao.length ; i++) {
         botoesAvaliacao[i].checked = false;
     }
+}
+
+function atualizaCampoTextoDigitado() {
+    var campoTexto = document.getElementById("itexto");
+    campoTexto.value = '';
 }
 
 //Ajax para enviar a resposta da avaliacação para o backend.

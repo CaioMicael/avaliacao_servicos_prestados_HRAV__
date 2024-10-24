@@ -20,6 +20,8 @@ form {
 }
 
 .footer {
+    display: flex;
+    align-items: center;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -71,6 +73,29 @@ p {
 .pergunta {
     margin: 20px;
 }
+
+#divAndamentoPergunta {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#barraProgressoContainer {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  #divBarraProgresso {
+    width: 0;
+    height: 30px;
+    background-color: #d34229;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    border-radius: 8px;
+  }
 
 #itexto {
     width: 100%;

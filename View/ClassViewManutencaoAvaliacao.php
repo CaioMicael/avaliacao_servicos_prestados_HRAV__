@@ -16,7 +16,7 @@
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 </head>
 <body>
-    <div class="main-container">
+    <div class="main-container" id="main-container">
     <form id="myform">
         <div class="pergunta">
             <p name="textoPergunta" id="textoPergunta"></p>
