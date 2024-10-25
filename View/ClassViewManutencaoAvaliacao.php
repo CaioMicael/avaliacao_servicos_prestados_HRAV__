@@ -58,7 +58,7 @@
             </label>
         </div>
         <div>
-            <input type="text" name="texto" id="itexto">
+            <input type="text" name="texto" id="itexto" placeholder="Aperte aqui caso queira escrever algo!">
         </div>
 
         <button type="submit" id="botaoSubmit">Enviar</button> 
