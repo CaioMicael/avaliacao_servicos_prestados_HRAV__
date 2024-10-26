@@ -18,7 +18,7 @@ setTimeout(atualizaComponentesTela(),0);
 
 function atualizaComponentesTela() {
     atualizaPerguntaForm();
-    atualizaCampoTextoDigitado();
+    //atualizaCampoTextoDigitado();
     geraBarraProgresso();
     atualizaBarraProgresso(calculaProgresso());
 }
@@ -32,7 +32,8 @@ function atualizaPerguntaForm() {
         indice += 1;
     }
     atualizaAndamentoPergunta();
-    atualizaBarraProgresso(calculaProgresso());//?? por que se deixar esta função aqui dentro funciona? Por que não pode ficar no componentes tela?
+    atualizaBarraProgresso(calculaProgresso());
+    atualizaCampoTextoDigitado();//
 }
 
 function atualizaAndamentoPergunta() {

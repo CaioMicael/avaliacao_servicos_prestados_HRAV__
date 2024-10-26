@@ -17,7 +17,7 @@ body {
     /*background-image: url('../imgs/background-img.jpg'); 
     background-repeat: no-repeat;
     background-size: cover;*/
-    background-color: #848993;
+    background-color: #f0f0f0;
     background-image: url('../imgs/logo-white.png'); 
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -82,11 +82,11 @@ input[type="text"] {
     width: 350px;
     height: 65px;
     line-height: 65px;
-    font-size: 10px;
+    font-size: 15px;
     background-color: transparent;
     text-align: left;
     border: none;
-    border-bottom: 2px solid #ffffff54;
+    border-bottom: 2px solid #28222254;
     padding-left: 0;
     padding-right: 0;
     border-radius: 0;
@@ -94,7 +94,7 @@ input[type="text"] {
 
 input[type="text"]::placeholder {
     color: black;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .pergunta {
