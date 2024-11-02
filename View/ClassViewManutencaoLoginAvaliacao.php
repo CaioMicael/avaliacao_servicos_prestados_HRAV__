@@ -1,3 +1,7 @@
+<?php
+require_once "../Controller/ClassControllerLoginAvaliacao.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,7 +12,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="" method="post">
+        <form action="../Controller/ClassControllerLoginAvaliacao.php" method="post">
             <div id="label_usuario" class="label_login">
                 <label> Código do Usuário <br>
                     <input type="number" name="codigo_usuario" id="codigo_usuario">

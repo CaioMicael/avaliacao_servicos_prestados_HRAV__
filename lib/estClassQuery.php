@@ -5,18 +5,20 @@ require_once "estClassConexaoBD.php";
 Class estClassQuery {
     private $conexaoBD;
     private $sql;
-    private $lastQuery;
+    protected $lastQuery;
     private $quantidadeLinhas;
 
-    public function __construct($bd) {
-        $this->conexaoBD = $bd;
+    public function __construct() {
+        $this->conexaoBD = new estClassConexaoBD();
     }
 
     public function Open() {
-        $this->lastQuery = pg_query($this->conexaoBD->getInternalConnection(), $this->sql);
-        if($this->lastQuery) {
-            $this->setQuantidadeLinhas(pg_num_rows($this->lastQuery));
-            return true;
+        if ($this->conexaoBD->conectaDB()) {
+            $this->lastQuery = pg_query($this->conexaoBD->getInternalConnection(), $this->sql);
+            if($this->lastQuery) {
+                $this->setQuantidadeLinhas(pg_num_rows($this->lastQuery));
+                return true;
+            }
         }
     }
 
