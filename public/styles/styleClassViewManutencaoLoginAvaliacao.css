@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url("../imgs/background-img.jpg");
+    position: fixed;
+    filter: blur();
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 350px;
+    height: 200px;
+    background-color: white;
+}
+
+.label_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
