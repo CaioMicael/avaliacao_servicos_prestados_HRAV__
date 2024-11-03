@@ -9,10 +9,15 @@ require_once "../Controller/ClassControllerLoginAvaliacao.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliação HRAV</title>
     <link rel="stylesheet" href="../public/styles/styleClassViewManutencaoLoginAvaliacao.css">
+    <script src="ClassViewComportamentoLoginAvaliacao.js" defer></script>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script> 
 </head>
 <body>
     <div class="container">
-        <form action="../Controller/ClassControllerLoginAvaliacao.php" method="post">
+        <img src="../public/imgs/logo-white.png" alt="Logo do Hospital Regional do Alto Vale" id="logoPaginaLogin">
+
+         <form action="../Controller/ClassControllerLoginAvaliacao.php" class="formLogin" method="POST">
+
             <div id="label_usuario" class="label_login">
                 <label> Código do Usuário <br>
                     <input type="number" name="codigo_usuario" id="codigo_usuario">
@@ -22,10 +27,11 @@ require_once "../Controller/ClassControllerLoginAvaliacao.php";
             <div id="label_senha" class="label_login">
                 <label>Senha <br>
                     <input type="password" name="senha" id="senha">
+                    <button id="mostrarSenha" type="button">Mostrar senha</button>
                 </label>
             </div>
 
-            <button type="submit">Inicial Sessão</button>
+            <button type="submit" class="btn" id="botaoSubmit" disabled>Iniciar Sessão</button>
         </form>
     </div>
 </body>

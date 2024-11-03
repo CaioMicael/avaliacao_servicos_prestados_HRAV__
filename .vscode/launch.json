@@ -1,6 +1,12 @@
 {
 "version": "0.2.0",
 "configurations": [
+    {
+        "name": "Listen for Xdebug",
+        "type": "php",
+        "request": "launch",
+        "port": 9003
+    },
 {
 "name": "Listem for XDebug",
 "type": "php",
@@ -19,7 +25,7 @@
 "type": "chrome",
 "request": "launch",
 "name": "Abrir o chrome rodando a aplicação",
-"url": "http://localhost/avaliacao_servicos_prestados_HRAV__/Controller/ClassControllerAvaliacao.php",
+"url": "http://localhost/avaliacao_servicos_prestados_HRAV__/View/ClassViewManutencaoLoginAvaliacao.php",
 "webRoot": "${workspaceFolder}"
 }
 ]

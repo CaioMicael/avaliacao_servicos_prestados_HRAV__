@@ -4,9 +4,9 @@ require_once "estClassConexaoBD.php";
 
 Class estClassQuery {
     private $conexaoBD;
-    private $sql;
+    protected $sql;
     protected $lastQuery;
-    private $quantidadeLinhas;
+    protected $quantidadeLinhas;
 
     public function __construct() {
         $this->conexaoBD = new estClassConexaoBD();
@@ -17,7 +17,6 @@ Class estClassQuery {
             $this->lastQuery = pg_query($this->conexaoBD->getInternalConnection(), $this->sql);
             if($this->lastQuery) {
                 $this->setQuantidadeLinhas(pg_num_rows($this->lastQuery));
-                return true;
             }
         }
     }

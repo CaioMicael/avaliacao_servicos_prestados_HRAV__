@@ -15,10 +15,10 @@ class ClassControllerLoginAvaliacao {
     public function processaLogin() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (estClassRequestBase::post("codigo_usuario")) {
-                estClassRequestBase::set("codigo_usuario",$this->getUsuario());
+                $this->setUsuario($_REQUEST["codigo_usuario"]);
             }
             if (estClassRequestBase::post("senha")) {
-                estClassRequestBase::set("senha",$this->getSenha());
+                $this->setSenha($_REQUEST["senha"]);    
             }
             $this->isLoginValido();
         }
@@ -26,8 +26,8 @@ class ClassControllerLoginAvaliacao {
 
     private function isLoginValido() {
         if ($this->model->verificaLogin($this->getUsuario(),$this->getSenha())) {
-            //redireciona a pagina
-            echo "login feito com sucesso!";
+            header("Location: ../View/ClassViewManutencaoAvaliacao.php");
+            exit;
         }
         else {
             echo "Senha ou usuário inválidos";
