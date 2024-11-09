@@ -36,3 +36,26 @@ body::before {
 #logo {
     width: 80px;
 }
+
+.progress-container {
+    width: 300px;
+    height: 30px;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #d34229;
+    width: 0%;
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out;
+}
+
+.progress-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+ 

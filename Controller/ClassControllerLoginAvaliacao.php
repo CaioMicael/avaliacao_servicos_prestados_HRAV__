@@ -18,7 +18,7 @@ class ClassControllerLoginAvaliacao {
                 $this->setUsuario($_REQUEST["codigo_usuario"]);
             }
             if (estClassRequestBase::post("senha")) {
-                $this->setSenha($_REQUEST["senha"]);    
+                $this->setSenha($_REQUEST["senha"]);
             }
             $this->isLoginValido();
         }

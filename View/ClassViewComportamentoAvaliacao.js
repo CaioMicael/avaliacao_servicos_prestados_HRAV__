@@ -33,7 +33,7 @@ function atualizaPerguntaForm() {
     }
     atualizaAndamentoPergunta();
     atualizaBarraProgresso(calculaProgresso());
-    atualizaCampoTextoDigitado();//
+    atualizaCampoTextoDigitado();
 }
 
 function atualizaAndamentoPergunta() {
