@@ -1,3 +1,19 @@
+<?php
+require_once "../Controller/ClassControllerDispositivo.php";
+
+class ClassViewManutencaoDispositivo {
+    private $controller;
+    private $aDados;
+
+    public function __construct() {
+        $this->controller = new ClassControllerDispositivo;
+        $this->aDados = $this->controller->getDispositivoFromModel(); 
+        echo "<div id='data' data-array='". json_encode($this->aDados) ."'></div>";
+    }
+}
+$view = new ClassViewManutencaoDispositivo;
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

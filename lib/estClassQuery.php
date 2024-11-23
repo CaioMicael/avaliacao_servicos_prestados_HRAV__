@@ -21,6 +21,18 @@ Class estClassQuery {
         }
     }
 
+    protected function openFetchAll() {
+        $this->conexaoBD->conectaDB();
+        $result = pg_query($this->conexaoBD->getInternalConnection(), $this->sql);
+        if ($result) {
+            $rows = pg_fetch_all($result);
+            return $rows;
+        }
+        else {
+            return 'Dados não encontrados!';
+        }
+    }
+
     public function getNextRow() {
         return pg_fetch_assoc($this->lastQuery);
     }
@@ -39,6 +51,10 @@ Class estClassQuery {
 
     public function setQuantidadeLinhas($qtde) {
         $this->quantidadeLinhas = $qtde;
+    }
+
+    private function setLastQuery($last) {
+        $this->lastQuery = $last;
     }
 }
 
