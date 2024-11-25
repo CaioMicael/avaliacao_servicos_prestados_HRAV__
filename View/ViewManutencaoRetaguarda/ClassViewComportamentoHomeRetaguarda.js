@@ -59,6 +59,10 @@ document.addEventListener('DOMContentLoaded', function() {
         link.classList.add('active');
     }
 
+    function doAjaxCarregaPergunta() {
+        
+    }
+
     // Fechar submenus ao clicar fora da barra de navegação
     window.addEventListener('click', function(e) {
         if (!e.target.closest('.navbar')) { // Verifica se o clique não foi dentro da barra de navegação
