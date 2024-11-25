@@ -21,20 +21,17 @@ $view = new ClassViewManutencaoDispositivo;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliação HRAV</title>
     <link rel="stylesheet" href="../public/styles/styleClassViewManutencaoDispositivo.css">
+    <script src="ClassViewComportamentoDispositivo.js" defer></script>
 </head>
 <body>
     <h1>Escolha um dispositivo</h1>
 
-    <div class="lista">
-        <ul>
-            <div class="itens-lista">
-                <li>
-                    <label for="">
-                        <input type="radio" name="" id=""> teste
-                    </label>
-                </li>
-            </div>
-        </ul>
-    </div>
+    <form action="../Controller/ClassControllerAvaliacao.php" method="get">
+        <div class="lista">
+            <ul id="listaDispositivo">
+            </ul>
+        </div>
+        <input type="submit" value="Selecionar">
+    </form>
 </body>
 </html>

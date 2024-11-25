@@ -25,5 +25,10 @@ CREATE TABLE tbavaliacao (
     CONSTRAINT fk_dispositivo FOREIGN KEY (id_dispositivo) REFERENCES tbdispositivos(id_dispositivo)
 );
 
+CREATE TABLE tbsetor (
+    id_setor INT,
+    nome_setor VARCHAR(100)
+);		
+
 insert into tbperguntas values (1,'Como você avalia nosso atendimento?',1);
 insert into tbperguntas values (2,'Você foi bem recebido?',1);

@@ -1,5 +1,6 @@
 <?php
 
+require_once "../lib/estClassRequestBase.php";
 require_once '../Model/ClassModelAvaliacao.php';
 require_once '../View/ClassViewManutencaoAvaliacao.php';
 
@@ -12,8 +13,6 @@ class ClassControllerAvaliacao {
 
     public function __construct() {
         $this -> model = new ClassModelAvaliacao();
-        //$avaliacaoForm = new ClassControllerAvaliacao();
-        //$this -> getTextoPergunta();
     }
 
     public function processaAvaliacao() {
@@ -31,8 +30,16 @@ class ClassControllerAvaliacao {
         }
     }
 
+    public function setDispositivoSelecionado() {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            if (estClassRequestBase::get("dispositivo")) {
+                $this->setDispositivo($_REQUEST['dispositivo']);
+            }
+        }
+    }
+
     public function enviaResultadoAvaliacao() {
-        $this -> model -> insereAvaliacao($this -> getPergunta() , $this -> getAvaliacao() , $this -> getFeedback());
+        $this -> model -> insereAvaliacao($this->getPergunta(), $this->getDispositivo(),  $this->getAvaliacao() , $this->getFeedback());
     }
 
     public function getTextoPergunta() {
@@ -72,8 +79,12 @@ class ClassControllerAvaliacao {
     }
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $avaliacaoForm = new ClassControllerAvaliacao();   
-    $avaliacaoForm -> processaAvaliacao();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {  
+    $avaliacaoForm->processaAvaliacao();
+}
+else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $avaliacaoForm = new ClassControllerAvaliacao(); 
+    $avaliacaoForm->setDispositivoSelecionado();
 }
 ?>

@@ -14,10 +14,11 @@ class ClassModelDispositivo extends estClassQuery {
     public function getInfoDispositivos() {
         $this->setSql(
             "SELECT id_dispositivo,
-                    id_setor,
-                    nome_dispositivo,
-                    status
+                    nome_setor,
+                    nome_dispositivo
                FROM tbdispositivos
+               JOIN tbsetor
+              USING (id_setor)
               WHERE status = 1;"
         );
         $result = $this->openFetchAll();
