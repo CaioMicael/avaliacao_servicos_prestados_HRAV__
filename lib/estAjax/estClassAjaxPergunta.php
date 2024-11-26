@@ -1,5 +1,7 @@
 <?php
 
+require_once '../estClassQuery.php';
+
 class estClassAjaxPergunta extends estClassQuery {
     private $pergunta;
 
@@ -11,12 +13,19 @@ class estClassAjaxPergunta extends estClassQuery {
             "
         );
         $result = $this->openFetchAll();
-        $this->pergunta = $result;
+        $this->setPerguntas($result);
+        return $this->pergunta;
+    }
+
+    public function setPerguntas($perguntas) {
+        $this->pergunta = $perguntas;
     }
 
 }
 
 $oPergunta = new estClassAjaxPergunta();
-$oPergunta->getPergunta();
+$dados     = $oPergunta->getPergunta();
+header('Content-Type: application/json');
+echo json_encode($dados);
 
 ?>

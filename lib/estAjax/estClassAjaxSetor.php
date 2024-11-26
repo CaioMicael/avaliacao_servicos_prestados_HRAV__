@@ -3,6 +3,7 @@
 class estClassAjaxSetor extends estClassQuery {
     private $setor;
 
+
     public function getSetor() {
         $this->setSql(
             "
@@ -11,12 +12,20 @@ class estClassAjaxSetor extends estClassQuery {
             "
         );
         $result = $this->openFetchAll();
-        $this->setor = $result;
+        $this->setSetor($result);
+        return $this->setor;
+    }
+
+
+    private function setSetor($setor) {
+        $this->setor = $setor;
     }
 
 }
 
 $oSetor = new estClassAjaxSetor();
-$oSetor->getSetor();
+$dados  = $oSetor->getSetor();
+header('Content-Type: application/json');
+echo json_encode($dados);
 
 ?>

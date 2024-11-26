@@ -2,7 +2,6 @@
 
 require_once "../lib/estClassRequestBase.php";
 require_once "../Model/ClassModelDispositivo.php";
-require_once "../lib/estClassRequestBase.php";
 
 class ClassControllerDispositivo {
     private $dispositivo;

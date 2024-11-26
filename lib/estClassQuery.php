@@ -33,6 +33,17 @@ Class estClassQuery {
         }
     }
 
+
+    protected function insertAll($aDados) {
+        try {
+            $this->conexaoBD->conectaDB();
+            pg_query_params($this->conexaoBD->getInternalConnection() , $this->sql,$aDados);
+        } catch (Exception $e) {
+            echo $e;
+        }
+    }
+
+
     public function getNextRow() {
         return pg_fetch_assoc($this->lastQuery);
     }
