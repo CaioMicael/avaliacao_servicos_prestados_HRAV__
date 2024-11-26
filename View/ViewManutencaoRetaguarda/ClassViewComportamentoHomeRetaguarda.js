@@ -60,7 +60,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function doAjaxCarregaPergunta() {
-        
+        $("#myform").submit(function(e) {
+            var url = "../Controller/ClassControllerAvaliacao.php";
+            var id_pergunta = idTextoPergunta[indice-1]; 
+            var avaliacao   = $("#myform").serialize();
+            $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: sdata,
+                    success: function(data)
+                    {
+                        atualizaPerguntaForm();
+                        atualizaRadioSelecionado();
+                    }
+                    });
+            e.preventDefault();
+        });
     }
 
     // Fechar submenus ao clicar fora da barra de navegação
