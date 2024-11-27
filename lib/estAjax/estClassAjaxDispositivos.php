@@ -1,9 +1,8 @@
 <?php
 
-require_once '../estClassQuery.php';
 require_once '../../Model/ClassModelDispositivo.php';
 
-class estClassAjaxDispositivos extends estClassQuery {
+class estClassAjaxDispositivos  {
     private $dispositivo;
     private $model;
 

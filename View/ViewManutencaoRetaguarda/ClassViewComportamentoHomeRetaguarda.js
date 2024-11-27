@@ -54,11 +54,17 @@ document.addEventListener('DOMContentLoaded', function() {
         closeAllSubmenus();
         setActiveLink(this);
         updateContent('Cadastrar Dispositivos', 'Aqui você pode cadastrar novos dispositivos.');
-        criarTabela({
-            colunas: [
-                        'coluna1','coluna2','coluna3'
-                    ]
-                },[10,2])
+        doAjaxCarregaDispositivos()
+            .then(resposta => {
+                criarTabela({
+                    colunas: [
+                                'coluna1','coluna2','coluna3'
+                            ]
+                        },resposta);
+            })
+            .catch(error => {
+                console.error("Erro ao carregar dispositivos: ", error);
+            });
     });
     
     
@@ -296,7 +302,7 @@ function doAjaxCarregaDispositivos() {
     return new Promise((resolve, reject) => {
         let xmlhttp  = new XMLHttpRequest();
         const method = "GET";
-        const url    = "../../lib/estAjax/estClassAjaxSetor.php";
+        const url    = "../../lib/estAjax/estClassAjaxDispositivos.php";
         
         xmlhttp.onreadystatechange = () => {
             if (xmlhttp.readyState === XMLHttpRequest.DONE) {
