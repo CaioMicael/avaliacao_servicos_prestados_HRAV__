@@ -26,9 +26,23 @@ CREATE TABLE tbavaliacao (
 );
 
 CREATE TABLE tbsetor (
-    id_setor INT,
+    id_setor INT PRIMARY KEY,
     nome_setor VARCHAR(100)
 );		
+
+alter table tbdispositivos add constraint fk_setor foreign key (id_setor) references tbsetor(id_setor);
+
+CREATE SEQUENCE public.tbsetor_id_setor_seq
+    INCREMENT 1
+    START 1;
+
+ALTER SEQUENCE public.tbsetor_id_setor_seq
+    OWNER TO postgres;
+
+ALTER SEQUENCE tbsetor_id_setor_seq
+OWNED BY tbsetor.id_setor;
+
+alter table tbsetor alter column id_setor set default nextval ('tbsetor_id_setor_seq');
 
 insert into tbperguntas values (1,'Como você avalia nosso atendimento?',1);
 insert into tbperguntas values (2,'Você foi bem recebido?',1);

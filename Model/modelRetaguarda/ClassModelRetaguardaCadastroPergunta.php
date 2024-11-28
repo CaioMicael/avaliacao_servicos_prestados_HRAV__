@@ -11,8 +11,8 @@ class ClassModelRetaguardaCadastroPergunta extends estClassQuery {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (estClassRequestBase::post("texto_pergunta")) {
                 $this->setTextoPergunta($_REQUEST["texto_pergunta"]);
+                $this->inserePerguntaCadastrada();
             }
-            $this->inserePerguntaCadastrada();
         }
     }
 

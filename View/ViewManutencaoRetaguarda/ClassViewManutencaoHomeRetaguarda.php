@@ -15,6 +15,7 @@
                 <ul class="submenu">
                     <li><a href="#" id="cadastrar-perguntas">Cadastrar Perguntas</a></li>
                     <li><a href="#" id="cadastrar-dispositivo">Cadastrar Dispositivos</a></li>
+                    <li><a href="#" id="cadastrar-setor">Cadastrar Setores</a></li>
                 </ul>
             </li>
             <li class="nav-item" id="consulta-nav">

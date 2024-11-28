@@ -1,5 +1,7 @@
 <?php
 
+require_once '../../lib/estClassQuery.php';
+
 class estClassAjaxSetor extends estClassQuery {
     private $setor;
 
