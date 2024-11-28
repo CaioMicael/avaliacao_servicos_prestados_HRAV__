@@ -99,7 +99,7 @@ form {
     font-family: 'Courier New', Courier, monospace;
 }  
 
-input {
+input:not([type="radio"]) {
     padding: 15px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -139,4 +139,9 @@ th {
     padding: 8px;
     text-align: left;
     background-color: #f2f2f2
+}
+
+input[type="radio"]:checked + .box {
+    outline: 5px solid #333;
+    transform: scale(1.3);
 }

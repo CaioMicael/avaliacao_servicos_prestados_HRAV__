@@ -19,6 +19,13 @@
                 </ul>
             </li>
             <li class="nav-item" id="consulta-nav">
+                <a href="#" class="nav-link">Manutenção &#9662;</a>
+                <ul class="submenu">
+                    <li><a href="#" id="manutencao-perguntas">Ativar/Desativar perguntas</a></li>
+                    <li><a href="#" id="manutencao-dispositivos">Ativar/Desativar dispositivos</a></li>
+                </ul>
+            </li>
+            <li class="nav-item" id="consulta-nav">
                 <a href="#" class="nav-link">Consulta &#9662;</a>
                 <ul class="submenu">
                     <li><a href="#" id="visualizar-avaliacoes">Visualizar Avaliações</a></li>

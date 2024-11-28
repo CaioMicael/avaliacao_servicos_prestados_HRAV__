@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(resposta => {
                 criarTabela({
                     colunas: [
-                                'Nome do Setor'
+                                'Código do Setor' , 'Nome do Setor'
                             ],
                     tituloTabela: "Setores Cadastrados"
                         },resposta);
@@ -111,6 +111,77 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     
+    document.getElementById('manutencao-perguntas').addEventListener('click', function(event) {
+        event.preventDefault();
+        closeAllSubmenus();
+        setActiveLink(this);
+        updateContent('Manutenção de Perguntas', 'Aqui você pode ativar ou desativar perguntas cadastradas! As perguntas já ativas serão desativadas, e as desativadas serão ativas.');
+        doAjaxCarregaPergunta()
+        .then(resposta => {
+            criarTabela({
+                colunas: [
+                    'Código Pergunta' , 'Descrição' , 'Status'
+                ],
+                tituloTabela: "Perguntas cadastradas"
+            },resposta);
+        })
+        .catch(error => {
+            console.error("Erro ao carregar perguntas:", error);
+        });
+        criarFormulario({
+            action: "../../Model/modelRetaguarda/ClassModelRetaguardaCadastroPergunta.php",
+            method: "POST",
+            inputs: [
+                {type: "number" , name: "idPergunta" , placeholder: "Código da Pergunta" , required: true},
+                {type: "hidden" , name: "tipoFormulario" , value: "manutencaoPergunta"}
+            ],
+            buttonText: "Confirmar"
+        })
+    });
+
+
+    document.getElementById('manutencao-dispositivos').addEventListener('click', function(event) {
+        event.preventDefault();
+        closeAllSubmenus();
+        setActiveLink(this);
+        updateContent('Manutenção de Dispositivos', 'Aqui você pode ativar ou desativar dispositivos cadastrados!');
+        doAjaxCarregaDispositivos()
+        .then(resposta => {
+            criarTabela({
+                colunas: [
+                            'ID Dispositivo','Setor','Nome do Dispositivo'
+                        ],
+                tituloTabela: "Dispositivos Cadastrados"
+                    },resposta);
+        })
+        .catch(error => {
+            console.error("Erro ao carregar dispositivos: ", error);
+        });
+        doAjaxCarregaSetores()
+            .then(resposta => {
+                criarTabela({
+                    colunas: [
+                                'Código do Setor' , 'Nome do Setor'
+                            ],
+                    tituloTabela: "Setores Cadastrados"
+                        },resposta);
+            })
+            .catch(error => {
+                console.error("Erro ao carregar setores: ", error);
+            });
+        criarFormulario({
+            action: "../../Model/modelRetaguarda/ClassModelRetaguardaCadastroDispositivo.php",
+            method: "POST",
+            inputs: [
+                {type: "number" , name: "idDispositivo" , placeholder: "Código do Dispositivo" , required: true},
+                {type: "number" , name: "idSetor" , placeholder: "Código do Setor" , required: true},
+                {type: "hidden" , name: "tipoFormulario" , value: "manutencaoDispositivo"}
+            ],
+            buttonText: "Confirmar"
+        })
+    });
+
+
     document.getElementById('visualizar-avaliacoes').addEventListener('click', function(event) {
         event.preventDefault();
         closeAllSubmenus();
@@ -182,14 +253,21 @@ function criarTabela(config,dados) {
     dados.forEach(item => {
         const row = document.createElement("tr");
         Object.values(item).forEach(subitem => {
-            let tempCell           = document.createElement("td");
-            tempCell.textContent   = subitem;
+            let tempCell = document.createElement("td");
+            if (Object.keys(item) == "status" && subitem == 1) {
+                tempCell.textContent = "Ativo";
+            }
+            else if (Object.keys(item) == "status" && subitem == 0) {
+                tempCell.textContent = "Inativo";
+            }
+            else {
+                tempCell.textContent = subitem;
+            }
             tempCell.style.border  = "1px solid #ddd";
             tempCell.style.padding = "8px";
             row.appendChild(tempCell);
         })
 
-        // Adicionar a linha no corpo da tabela
         tbody.appendChild(row);
     });
 
@@ -217,7 +295,6 @@ function criarFormulario(config) {
         input.placeholder = inputConfig.placeholder || ""; // Placeholder (opcional)
         input.value = inputConfig.value || ""; // Valor inicial (opcional)
         input.required = inputConfig.required || false; // Definir se o campo é obrigatório
-        input.style.marginBottom = "10px"; // Estilo básico
 
         formulario.appendChild(input);
     });
