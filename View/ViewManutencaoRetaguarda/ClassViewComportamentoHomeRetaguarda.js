@@ -71,6 +71,18 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => {
                 console.error("Erro ao carregar dispositivos: ", error);
             });
+        doAjaxCarregaSetores()
+            .then(resposta => {
+                criarTabela({
+                    colunas: [
+                                'Código do Setor' , 'Nome do Setor'
+                            ],
+                    tituloTabela: "Setores Cadastrados"
+                        },resposta);
+            })
+            .catch(error => {
+                console.error("Erro ao carregar setores: ", error);
+            });
         criarFormulario({
             action: "../../Model/modelRetaguarda/ClassModelRetaguardaCadastroDispositivo.php",
             method: "POST",
@@ -174,7 +186,6 @@ document.addEventListener('DOMContentLoaded', function() {
             method: "POST",
             inputs: [
                 {type: "number" , name: "idDispositivo" , placeholder: "Código do Dispositivo" , required: true},
-                {type: "number" , name: "idSetor" , placeholder: "Código do Setor" , required: true},
                 {type: "hidden" , name: "tipoFormulario" , value: "manutencaoDispositivo"}
             ],
             buttonText: "Confirmar"
