@@ -36,8 +36,8 @@
 
     <!-- Conteúdo Principal -->
     <div class="main-content" id="main-content">
-        <h1>Bem-vindo ao Sistema Web</h1>
-        <p>Utilize a barra de navegação para acessar as opções de Cadastro e Consulta.</p>
+        <h1>Bem-vindo ao Sistema de Retaguarda</h1>
+        <p>Utilize a barra de navegação para acessar as opções de Cadastro, manutenção e consulta.</p>
     </div>
 </body>
 </html>
