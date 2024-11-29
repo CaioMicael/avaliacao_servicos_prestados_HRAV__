@@ -85,9 +85,10 @@ class ClassModelRetaguardaCadastroPergunta extends estClassQuery {
 }
 
 $modelCadastroPergunta = new ClassModelRetaguardaCadastroPergunta();
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['tipoFormulario'] == 'manutencaoPergunta') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['tipoFormulario'])) {
     $modelCadastroPergunta->setIDPergunta($_POST["idPergunta"]);
     $modelCadastroPergunta->alteraStatusPergunta();
+    echo "erraddoo";
 } else {
     $modelCadastroPergunta->processaFormInclusao();
 }

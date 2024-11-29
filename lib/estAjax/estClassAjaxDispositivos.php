@@ -1,18 +1,26 @@
 <?php
 
-require_once '../../Model/ClassModelDispositivo.php';
+require_once '../estClassQuery.php';
 
-class estClassAjaxDispositivos  {
+class estClassAjaxDispositivos extends estClassQuery {
     private $dispositivo;
     private $model;
 
 
-    public function __construct() {
-        $this->model = new ClassModelDispositivo;
-    }
-
     public function getDispositivo() {
-        return $this->model->getInfoDispositivos();
+        //return $this->model->getInfoDispositivos();
+        $this->setSql(
+            "SELECT id_dispositivo,
+                    nome_setor,
+                    nome_dispositivo
+               FROM tbdispositivos
+               JOIN tbsetor
+              USING (id_setor)
+              WHERE status = 1;"
+        );
+        $result = $this->openFetchAll();
+        $this->setDispositivo($result);
+        return $this->dispositivo;
     }
 
     public function setDispositivo($dispositivo) {

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../../public/styles/styleClassViewBIAvaliacao.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        var dados;
+        const mediaSetor = {mediaSetor: ""};
+        doAjaxCarregaMediaPorSetor()
+            .then(resposta => {
+                dados = resposta;
+                console.log(dados);
+            })
+            .catch(error => {
+            console.error("Erro ao carregar setores: ", error);
+            })
+        google.charts.load('current', {packages: ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function doAjaxCarrega(caminho,inputData = {}) {
+            return new Promise((resolve, reject) => {
+            let xmlhttp  = new XMLHttpRequest();
+            const method = "GET";
+            let url    = caminho;
+            const queryParams = new URLSearchParams(inputData).toString();
+            url += "?" + queryParams
+        
+            xmlhttp.onreadystatechange = () => {
+                if (xmlhttp.readyState === XMLHttpRequest.DONE) {
+                    const status = xmlhttp.status;
+                    if (status === 200) {
+                        const resposta = JSON.parse(xmlhttp.response);
+                        resolve(resposta);
+                    } else {
+                        reject("Erro ao tentar carregar os dados!");
+                    }
+                }
+            };
+        
+            xmlhttp.open(method, url, true);
+            xmlhttp.send();
+            });
+        }
+
+
+        function doAjaxCarregaMediaPorSetor() {
+            return doAjaxCarrega("../../Model/ClassModelAvaliacao.php",mediaSetor);
+        }
+
+
+        function drawChart() {
+            // Simulação do retorno JSON do servidor
+            const jsonData = dados;
+
+            // Transformar os dados para o formato do Google Charts
+            const chartData = [['Setor', 'Média']];
+            jsonData.forEach(item => {
+                chartData.push([item.nome_setor, parseFloat(item.media)]);
+            });
+
+            // Converter os dados para o formato do Google Charts
+            const data = google.visualization.arrayToDataTable(chartData);
+
+            // Configurar opções do gráfico
+            const options = {
+                title: 'Média por Setor',
+                hAxis: {title: 'Setor'},
+                vAxis: {title: 'Média'},
+                legend: 'none',
+                colors: ['#4285F4']
+            };
+
+            // Renderizar o gráfico em uma div
+            const chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+    <div id="chart_div" style="width: 800px; height: 500px;"></div>
+</body>
+</html>

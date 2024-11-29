@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../lib/estClassQuery.php';
+require_once '../lib/estClassQuery.php';
 
 class ClassModelDispositivo extends estClassQuery {
 

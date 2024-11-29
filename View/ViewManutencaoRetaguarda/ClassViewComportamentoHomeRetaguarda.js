@@ -7,7 +7,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Adicionar evento de clique nas opções de navegação
+
+    function closeTables() {
+        let tabela = document.getElementsByTagName("table");
+        aTabela    = Array.from(tabela);
+        aTabela.forEach(item => {
+            item.remove();
+        })
+    }
+
+
+    function closeForms() {
+        let form = document.getElementsByTagName("form");
+        aForm    = Array.from(form);
+        aForm.forEach(item => {
+            item.remove();
+        })
+    }
+
+
     document.querySelectorAll('.navbar .nav-item > .nav-link').forEach(link => {
         link.addEventListener('click', function(event) {
             event.preventDefault(); // Evita o comportamento padrão do link
@@ -15,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const parent = this.parentElement;
             const isActive = parent.classList.contains('active');
 
-            // Fechar todos os submenus
             closeAllSubmenus();
 
             // Se o item não estava ativo, ativá-lo
@@ -29,6 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('cadastrar-perguntas').addEventListener('click', function(event) {
         event.preventDefault();
         closeAllSubmenus();
+        closeTables();
+        closeForms();
         setActiveLink(this);
         updateContent('Cadastrar Perguntas', 'Aqui você pode cadastrar as perguntas desejadas para que apareçam nos dispositivos!');
         doAjaxCarregaPergunta()
@@ -57,6 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('cadastrar-dispositivo').addEventListener('click', function(event) {
         event.preventDefault();
         closeAllSubmenus();
+        closeTables();
+        closeForms();
         setActiveLink(this);
         updateContent('Cadastrar Dispositivos', 'Aqui você pode cadastrar novos dispositivos!');
         doAjaxCarregaDispositivos()
@@ -98,6 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('cadastrar-setor').addEventListener('click', function(event) {
         event.preventDefault();
         closeAllSubmenus();
+        closeTables();
+        closeForms();
         setActiveLink(this);
         updateContent('Cadastrar Setores', 'Aqui você pode cadastrar novos setores!');
         doAjaxCarregaSetores()
@@ -126,6 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('manutencao-perguntas').addEventListener('click', function(event) {
         event.preventDefault();
         closeAllSubmenus();
+        closeTables();
+        closeForms();
         setActiveLink(this);
         updateContent('Manutenção de Perguntas', 'Aqui você pode ativar ou desativar perguntas cadastradas! As perguntas já ativas serão desativadas, e as desativadas serão ativas.');
         doAjaxCarregaPergunta()
@@ -155,6 +180,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('manutencao-dispositivos').addEventListener('click', function(event) {
         event.preventDefault();
         closeAllSubmenus();
+        closeTables();
+        closeForms();
         setActiveLink(this);
         updateContent('Manutenção de Dispositivos', 'Aqui você pode ativar ou desativar dispositivos cadastrados!');
         doAjaxCarregaDispositivos()
@@ -193,12 +220,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    document.getElementById('visualizar-avaliacoes').addEventListener('click', function(event) {
-        event.preventDefault();
-        closeAllSubmenus();
-        setActiveLink(this);
-        updateContent('Visualizar Avaliações', 'Aqui você pode visualizar as avaliações realizadas.');
-    });
+    //document.getElementById('visualizar-avaliacoes').addEventListener('click', function(event) {
+    //    event.preventDefault();
+    //    closeAllSubmenus();
+    //    setActiveLink(this);
+    //    updateContent('Visualizar Avaliações', 'Aqui você pode visualizar as avaliações realizadas.');
+    //});
 
 
     function updateContent(title, description) {

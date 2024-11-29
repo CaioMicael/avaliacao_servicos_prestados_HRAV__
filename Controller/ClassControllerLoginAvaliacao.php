@@ -26,7 +26,7 @@ class ClassControllerLoginAvaliacao {
 
     private function isLoginValido() {
         if ($this->model->verificaLogin($this->getUsuario(),$this->getSenha())) {
-            header("Location: ../View/ClassViewManutencaoAvaliacao.php");
+            header("Location: ../View/ClassViewManutencaoDispositivo.php");
             exit;
         }
         else {

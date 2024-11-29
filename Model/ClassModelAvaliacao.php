@@ -1,6 +1,8 @@
 <?php
 
-class ClassModelAvaliacao {
+require_once '../lib/estClassQuery.php';
+
+class ClassModelAvaliacao extends estClassQuery {
     private $dataAvaliacao;
     private $idPergunta;
     private $textoPergunta;
@@ -17,6 +19,21 @@ class ClassModelAvaliacao {
             echo $e;
         }
     }
+
+
+    public function getMediaPorSetor() {
+        $this->setSql(
+            "SELECT nome_setor,ROUND(AVG(resposta),2) AS media
+              FROM tbavaliacao
+              JOIN tbsetor
+             USING (id_setor)
+          GROUP BY 1
+          ORDER BY 2 DESC"
+        );
+        $result = $this->openFetchAll();
+        return $result;
+    }
+
 
     public function geraException($exception) {
         echo "<div class=exceptionTratada>
@@ -43,4 +60,11 @@ class ClassModelAvaliacao {
 
 }
 
-?>
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_REQUEST['mediaSetor'])) {  
+    $mediaPorSetor = new ClassModelAvaliacao();
+    $dados         = $mediaPorSetor->getMediaPorSetor();
+    header('Content-Type: application/json');
+    echo json_encode($dados);
+}
+
+?>  

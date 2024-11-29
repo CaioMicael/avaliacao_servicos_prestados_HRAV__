@@ -28,7 +28,7 @@
             <li class="nav-item" id="consulta-nav">
                 <a href="#" class="nav-link">Consulta &#9662;</a>
                 <ul class="submenu">
-                    <li><a href="#" id="visualizar-avaliacoes">Visualizar Avaliações</a></li>
+                    <li><a href="../ViewManutencaoRetaguarda/ClassViewBIAvaliacao.html" id="visualizar-avaliacoes">Visualizar Avaliações</a></li>
                 </ul>
             </li>
         </ul>

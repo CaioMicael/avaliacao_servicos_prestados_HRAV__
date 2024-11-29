@@ -1,18 +1,18 @@
-<?php
-require_once "../Controller/ClassControllerDispositivo.php";
-
-class ClassViewManutencaoDispositivo {
-    private $controller;
-    private $aDados;
-
-    public function __construct() {
-        $this->controller = new ClassControllerDispositivo;
-        $this->aDados = $this->controller->getDispositivoFromModel(); 
-        echo "<div id='data' data-array='". json_encode($this->aDados) ."'></div>";
-    }
-}
-$view = new ClassViewManutencaoDispositivo;
-?>
+//<?php
+//require_once "../Controller/ClassControllerDispositivo.php";
+//
+//class ClassViewManutencaoDispositivo {
+//    private $controller;
+//    private $aDados;
+//
+//    public function __construct() {
+//        $this->controller = new ClassControllerDispositivo;
+//        $this->aDados = $this->controller->getDispositivoFromModel(); 
+//        echo "<div id='data' data-array='". json_encode($this->aDados) ."'></div>";
+//    }
+//}
+//$view = new ClassViewManutencaoDispositivo;
+//?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -25,13 +25,5 @@ $view = new ClassViewManutencaoDispositivo;
 </head>
 <body>
     <h1>Escolha um dispositivo</h1>
-
-    <form action="../Controller/ClassControllerAvaliacao.php" method="get">
-        <div class="lista">
-            <ul id="listaDispositivo">
-            </ul>
-        </div>
-        <input type="submit" value="Selecionar">
-    </form>
 </body>
 </html>

@@ -81,10 +81,15 @@ class ClassControllerAvaliacao {
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {  
+    $avaliacaoForm = new ClassControllerAvaliacao();
+    //$avaliacaoForm = unserialize($redis->get("avaliacaoForm"));
     $avaliacaoForm->processaAvaliacao();
 }
 else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $avaliacaoForm = new ClassControllerAvaliacao(); 
     $avaliacaoForm->setDispositivoSelecionado();
+    //$redis = new Redis();
+    //$redis->connect('localhost', 5432);
+    //$redis->set("avaliacaoForm", serialize($avaliacaoForm));
 }
 ?>
