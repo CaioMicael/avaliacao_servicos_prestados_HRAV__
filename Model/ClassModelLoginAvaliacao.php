@@ -2,9 +2,26 @@
 
 require_once '../lib/estClassQuery.php';
 
+/**
+ * Classe model usada para validação
+ * do login na plataforma.
+ * 
+ * @author Caio Micael Krieger
+ */
 class ClassModelLoginAvaliacao extends estClassQuery {
      private $situacaoLogin;
 
+
+     /**
+      * Este método verifica se as credenciais de
+      * login e senha estão no banco de dados, se
+      * estiverem corretas, retorna valor booleano
+      * ao model.
+      *
+      * @param integer $usucodigo
+      * @param string $ususenha
+      * @return boolean
+      */
     public function verificaLogin($usucodigo,$ususenha) {
         $this->setSql("SELECT * 
                          FROM public.tbusuario 

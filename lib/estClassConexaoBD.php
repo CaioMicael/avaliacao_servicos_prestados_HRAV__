@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Classe utilizada para realizar a conexão
+ * com o banco de dados.
+ * 
+ * @author Caio Micael Krieger
+ */
 class estClassConexaoBD {
     private $host;
     private $porta;
@@ -7,15 +13,48 @@ class estClassConexaoBD {
     private $password;
     private $database;
     private $internalConnection;
+    /**
+     * Este atributo contém as informações de conexão ao banco de dados.
+     * @var array $aConnectionString
+     */
+    private $aConnectionString;
 
     public function __construct()   {
-        $this->setPorta(5432);
-        $this->setHost('localhost');
-        $this->setUser('postgres');
-        $this->setPassword('postgres');
-        $this->setDatabase("avaliacao");
+        $this->setConnectionString();
+        $this->setPorta($this->aConnectionString['porta']);
+        $this->setHost($this->aConnectionString['host']);
+        $this->setUser($this->aConnectionString['user']);
+        $this->setPassword($this->aConnectionString['password']);
+        $this->setDatabase($this->aConnectionString['database']);
     }
 
+    /**
+     * Este método realiza a leitura do arquivo .env de conexão com 
+     * o banco de dados e envia para o método construtor.
+     * 
+     */
+    private function setConnectionString() {
+        $fileEnv = __DIR__ .'\.env\db.env';
+
+        if (file_exists($fileEnv)) {
+            $this->aConnectionString = [];
+            $connectionString  = explode(',',file_get_contents($fileEnv));
+            foreach($connectionString as $con) {
+                list($key,$value) = explode('=' , trim($con));
+                $this->aConnectionString[trim($key)] = trim($value);
+            }
+        }
+        else {
+            echo 'Não foi possível conectar ao banco de dados!';
+        }
+    }
+
+
+    /**
+     * Este método realiza a busca dos atributos para conexão ao banco de dados.
+     * 
+     * @return string
+     */
     private function getConnectionString() {
         return "host= "      . $this->getHost() . 
                " port= "     . $this->getPorta() . 
@@ -24,6 +63,12 @@ class estClassConexaoBD {
                " dbname= "   . $this->getDatabase();
     }
 
+
+    /**
+     * Este método realiza a conexão com o banco de dados.
+     * 
+     * @return boolean
+     */
     public function conectaDB() {
         try {
             $this -> internalConnection = pg_connect($this->getConnectionString());

@@ -4,6 +4,13 @@ require_once "../lib/estClassRequestBase.php";
 require_once '../Model/ClassModelAvaliacao.php';
 require_once '../View/ClassViewManutencaoAvaliacao.php';
 
+/**
+ * Classe Controller usada para fazer
+ * a comunicação entre view -> controller -> model
+ * além de receber requisições post e get.
+ * 
+ * @author Caio Micael Krieger
+ */
 class ClassControllerAvaliacao {
     private $model;
     public $avaliacao;
@@ -15,6 +22,13 @@ class ClassControllerAvaliacao {
         $this -> model = new ClassModelAvaliacao();
     }
 
+
+    /**
+     * Este método realiza a trativa dos 
+     * dados vindo da requisição POST para
+     * depois enviar ao model.
+     * 
+     */
     public function processaAvaliacao() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['avaliacao'])) {
@@ -30,6 +44,7 @@ class ClassControllerAvaliacao {
         }
     }
 
+
     public function setDispositivoSelecionado() {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             if (estClassRequestBase::get("dispositivo")) {
@@ -38,6 +53,13 @@ class ClassControllerAvaliacao {
         }
     }
 
+
+    /**
+     * Este método realiza o envio dos 
+     * dados da avaliação para o model
+     * inserir ao banco de dados.
+     * 
+     */
     public function enviaResultadoAvaliacao() {
         $this -> model -> insereAvaliacao($this->getPergunta(), $this->getDispositivo(),  $this->getAvaliacao() , $this->getFeedback());
     }
@@ -82,14 +104,10 @@ class ClassControllerAvaliacao {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {  
     $avaliacaoForm = new ClassControllerAvaliacao();
-    //$avaliacaoForm = unserialize($redis->get("avaliacaoForm"));
     $avaliacaoForm->processaAvaliacao();
 }
 else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $avaliacaoForm = new ClassControllerAvaliacao(); 
     $avaliacaoForm->setDispositivoSelecionado();
-    //$redis = new Redis();
-    //$redis->connect('localhost', 5432);
-    //$redis->set("avaliacaoForm", serialize($avaliacaoForm));
 }
 ?>

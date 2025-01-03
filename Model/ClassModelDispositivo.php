@@ -2,6 +2,12 @@
 
 require_once '../lib/estClassQuery.php';
 
+/**
+ * Classe model usada para 
+ * fazer querys ao BD.
+ * 
+ * @author Caio Micael Krieger
+ */
 class ClassModelDispositivo extends estClassQuery {
 
     private $dispositivo;
@@ -11,6 +17,13 @@ class ClassModelDispositivo extends estClassQuery {
     private $infoDispositivos;
 
 
+    /**
+     * Este método realiza a busca das informações
+     * dos dispositivos e o setor vinculado ao
+     * dispositivo.
+     * 
+     * @return array $infoDispositivos
+     */
     public function getInfoDispositivos() {
         $this->setSql(
             "SELECT id_dispositivo,

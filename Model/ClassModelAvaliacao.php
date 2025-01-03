@@ -2,25 +2,39 @@
 
 require_once '../lib/estClassQuery.php';
 
+/**
+ * Classe model utilizada para fazer
+ * a busca dos dados ao BD.
+ * 
+ * @author Caio Micael Krieger
+ */
 class ClassModelAvaliacao extends estClassQuery {
-    private $dataAvaliacao;
-    private $idPergunta;
-    private $textoPergunta;
-    private $statusPergunta;
-    private $info_con = "host= localhost port = 5432 dbname= avaliacao user= postgres password= postgres";
 
+
+    /**
+     * Este método realiza a inserção das avaliações do front end no banco
+     * 
+     * @param integer $idPergunta
+     * @param integer $dispostivo
+     * @param integer $valorAvaliacao
+     * @param string $texto
+     */
     public function insereAvaliacao($idPergunta , $dispositivo , $valorAvaliacao , $texto) {
-        try {
-            $conexao = pg_connect($this -> info_con);
-            $aDados  = array(1,$idPergunta,$dispositivo,$valorAvaliacao,$texto);
-            pg_query_params($conexao , "INSERT INTO tbavaliacao (id_setor , id_pergunta , id_dispositivo , resposta , feedback_textual) 
-                                            VALUES ($1, $2, $3, $4, $5)",$aDados);
-        } catch (Exception $e) {
-            echo $e;
-        }
+        $this->setSql(
+            "INSERT INTO tbavaliacao (id_setor , id_pergunta , id_dispositivo , resposta , feedback_textual) 
+                  VALUES ($1, $2, $3, $4, $5);"
+        );
+        $aDados = array();
+        array_push($aDados,1 , $idPergunta , $dispositivo , $valorAvaliacao , $texto);
+        $this->insertAll($aDados);
     }
 
 
+    /**
+     * Este método realiza a busca da media por setor no banco de dados
+     * 
+     * @return array
+     */
     public function getMediaPorSetor() {
         $this->setSql(
             "SELECT nome_setor,ROUND(AVG(resposta),2) AS media
@@ -35,27 +49,17 @@ class ClassModelAvaliacao extends estClassQuery {
     }
 
 
-    public function geraException($exception) {
-        echo "<div class=exceptionTratada>
-                <p>Ocorreu uma execeção interna no sistema.</p>
-                    <div class=exceptionBD>
-                        <p id=exceptionBDdescricao>". $exception ."</p>
-                    </div>
-              </div>";
-    }
-
+    /**
+     * Este método realiza a busca das perguntas no banco de dados que devem aparecer no front end.
+     * 
+     * @return array
+     */
     public function getTextoPerguntaModel() {
-        $conexao = pg_connect($this -> info_con);
-        $result = pg_query($conexao, "SELECT id_pergunta,texto_pergunta FROM tbperguntas WHERE status = 1");
-        return pg_fetch_all($result);   
-    }
-
-    public function getDataAvaliacao() {
-        return $this -> dataAvaliacao;
-    }
-
-    public function setDataAvaliacao($data) {
-        $this -> dataAvaliacao = $data;
+        $this->setSql(
+            "SELECT id_pergunta,texto_pergunta FROM tbperguntas WHERE status = 1;"
+        );
+        $result = $this->openFetchAll();
+        return $result;   
     }
 
 }
